@@ -20,3 +20,16 @@ export interface Response<ResData = {}> {
   data: ResData;
   msg?: string;
 }
+
+export interface CorpusQueries {
+  word: string;
+  media: string;
+  cqlEnable: boolean;
+  postType: string;
+  boards: string;
+  start: string;
+  end: string;
+  windowSize: string;
+  page: number;
+  fetchNumber: number;
+}
