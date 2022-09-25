@@ -37,3 +37,5 @@ export interface CorpusQueries {
 export type PickAsOrNull<T, K extends keyof T> = Omit<T, K> & {
   [P in K]: T[P] | null;
 };
+
+export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
