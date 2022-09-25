@@ -18,7 +18,9 @@
     "paths": {
       "types": ["./src/types/index.ts"],
       "@components/*": ["./src/components/*"],
-      "@containers/*": ["./src/containers/*"]
+      "@containers/*": ["./src/containers/*"],
+      "@config": ["./src/config/index.ts"],
+      "@contexts/*": ["./src/contexts/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
