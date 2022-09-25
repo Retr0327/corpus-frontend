@@ -16,7 +16,7 @@ function App(props: AppProps & { colorScheme: ColorScheme }) {
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
       <DarkThemeContext colorScheme={colorScheme}>
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </DarkThemeContext>
     </>
   );
