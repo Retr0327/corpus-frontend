@@ -20,6 +20,7 @@
       "@components/*": ["./src/components/*"],
       "@containers/*": ["./src/containers/*"],
       "@config": ["./src/config/index.ts"],
+      "@hooks": ["./src/hooks/index.tsx"],
       "@contexts/*": ["./src/contexts/*"]
     }
   },
