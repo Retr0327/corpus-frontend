@@ -1,3 +1,4 @@
-import useCustomFormik from './useCustomFormik';
+import useCustomFormik from './Formik';
+import useSimpleForm from './SimpleForm';
 
-export { useCustomFormik };
+export { useSimpleForm, useCustomFormik };
