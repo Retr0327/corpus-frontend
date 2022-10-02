@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { IconSunHigh, IconMoon } from '@tabler/icons';
 import { ActionIcon, useMantineColorScheme } from '@mantine/core';
 
@@ -24,4 +24,4 @@ function ColorSchemeToggle() {
   );
 }
 
-export default ColorSchemeToggle;
+export default memo(ColorSchemeToggle);
