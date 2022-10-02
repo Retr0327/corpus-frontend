@@ -1,6 +1,13 @@
 import { memo } from 'react';
 import { ControllerProps } from 'types';
-import { Select, TextInput, RadioGroup, MultiSelect, CheckboxGroup } from './FormikComponents';
+import {
+  Select,
+  Switch,
+  TextInput,
+  RadioGroup,
+  MultiSelect,
+  CheckboxGroup,
+} from './FormikComponents';
 
 function FormikController(props: ControllerProps) {
   const { control } = props;
@@ -8,6 +15,8 @@ function FormikController(props: ControllerProps) {
   switch (control) {
     case 'select':
       return <Select {...props} />;
+    case 'switch':
+      return <Switch {...props} />;
     case 'text-input':
       return <TextInput {...props} />;
     case 'radio-group':
