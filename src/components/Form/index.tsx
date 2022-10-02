@@ -6,6 +6,7 @@ import {
   TextInput,
   RadioGroup,
   MultiSelect,
+  NumberInput,
   CheckboxGroup,
 } from './FormikComponents';
 
@@ -23,6 +24,8 @@ function FormikController(props: ControllerProps) {
       return <RadioGroup {...props} />;
     case 'multi-select':
       return <MultiSelect {...props} />;
+    case 'number-input':
+      return <NumberInput {...props} />;
     case 'checkbox-group':
       return <CheckboxGroup {...props} />;
     default:
