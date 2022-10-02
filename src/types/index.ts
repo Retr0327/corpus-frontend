@@ -1,5 +1,6 @@
 import {
   ColProps,
+  SwitchProps as MantineSwitchProps,
   SelectProps as MantineSelectProps,
   TextInputProps as MantineTextInputProps,
   RadioGroupProps as MantineRadioGroupProps,
@@ -61,6 +62,7 @@ export interface Options {
 
 export type Controlled<T> = { label: string | JSX.Element; name: string } & T;
 
+export type SwitchProps = Controlled<MantineSwitchProps>;
 export type TextInputProps = Controlled<MantineTextInputProps>;
 export type NumberInputProps = Controlled<MantineNumberInputProps>;
 export type SelectProps = Controlled<
@@ -82,7 +84,8 @@ export type ControllerProps =
   | ({ control: 'checkbox-group' } & CheckboxGroupProps)
   | ({ control: 'radio-group' } & RadioGroupProps)
   | ({ control: 'number-input' } & NumberInputProps)
-  | ({ control: 'multi-select' } & MultiSelectProps);
+  | ({ control: 'multi-select' } & MultiSelectProps)
+  | ({ control: 'switch' } & SwitchProps);
 
 export type ControllerPropsWithCol = {
   controllers: (ControllerProps & { col?: ColProps })[];
