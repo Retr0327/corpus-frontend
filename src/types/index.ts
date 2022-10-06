@@ -25,6 +25,7 @@ export type Request<T> = {
   url: string;
   method: HTTPMethods;
   payload?: T;
+  timeout?: number;
 };
 
 export interface Response<ResData = {}> {
