@@ -7,6 +7,7 @@ import {
   MultiSelectProps as MantineMultiSelectProps,
   NumberInputProps as MantineNumberInputProps,
   CheckboxGroupProps as MantineCheckboxGroupProps,
+  SegmentedControlProps as MantineSegmentedControlProps,
 } from '@mantine/core';
 
 export type HTTPMethods =
@@ -62,7 +63,6 @@ export interface Options {
 
 export type Controlled<T> = { label: string | JSX.Element; name: string } & T;
 
-export type SwitchProps = Controlled<MantineSwitchProps>;
 export type TextInputProps = Controlled<MantineTextInputProps>;
 export type NumberInputProps = Controlled<MantineNumberInputProps>;
 export type SelectProps = Controlled<
@@ -77,6 +77,12 @@ export type MultiSelectProps = Controlled<
     options: MantineMultiSelectProps['data'];
   }
 >;
+export type SwitchProps = Controlled<MantineSwitchProps>;
+export type SegmentedControlProps = Controlled<
+  Omit<MantineSegmentedControlProps, 'data'> & {
+    options: MantineSegmentedControlProps['data'];
+  }
+>;
 
 export type ControllerProps =
   | ({ control: 'text-input' } & TextInputProps)
@@ -85,7 +91,8 @@ export type ControllerProps =
   | ({ control: 'radio-group' } & RadioGroupProps)
   | ({ control: 'number-input' } & NumberInputProps)
   | ({ control: 'multi-select' } & MultiSelectProps)
-  | ({ control: 'switch' } & SwitchProps);
+  | ({ control: 'switch' } & SwitchProps)
+  | ({ control: 'segmented-control' } & SegmentedControlProps);
 
 export type ControllerPropsWithCol = {
   controllers: (ControllerProps & { col?: ColProps })[];
