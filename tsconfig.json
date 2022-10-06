@@ -21,7 +21,8 @@
       "@containers/*": ["./src/containers/*"],
       "@config": ["./src/config/index.ts"],
       "@hooks": ["./src/hooks/index.tsx"],
-      "@contexts/*": ["./src/contexts/*"]
+      "@contexts/*": ["./src/contexts/*"],
+      "@utils": ["./src/utils/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
