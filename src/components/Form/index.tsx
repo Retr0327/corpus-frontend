@@ -8,6 +8,7 @@ import {
   MultiSelect,
   NumberInput,
   CheckboxGroup,
+  SegmentedControl,
 } from './FormikComponents';
 
 function FormikController(props: ControllerProps) {
@@ -28,6 +29,8 @@ function FormikController(props: ControllerProps) {
       return <NumberInput {...props} />;
     case 'checkbox-group':
       return <CheckboxGroup {...props} />;
+    case 'segmented-control':
+      return <SegmentedControl {...props} />;
     default:
       return null;
   }
