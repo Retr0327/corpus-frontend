@@ -2,7 +2,7 @@ export interface FormValues {
   word: string;
   cqlEnable: boolean;
   media: string;
-  board: string;
+  boards: string;
   start: number;
   end: number;
   postType: string;
