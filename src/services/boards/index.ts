@@ -1,9 +1,9 @@
-import { API } from '@config';
+import API from '@config/api';
 import { request } from '@utils';
 
 const getBoards = async () => {
   try {
-    const result = await request({ method: 'GET', url: API.external.boards });
+    const result = await request({ method: 'GET', url: API.boards });
     return [result, null];
   } catch (error) {
     return [null, error];
