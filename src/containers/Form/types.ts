@@ -1,11 +1,7 @@
-export interface FormValues {
-  word: string;
-  cqlEnable: boolean;
-  media: string;
-  boards: string;
+import { CorpusQueries } from 'types';
+
+export type FormValues = Omit<CorpusQueries, 'page' | 'start' | 'end' | 'windowSize'> & {
   start: number;
   end: number;
-  postType: string;
   windowSize: number;
-  fetchNumber: number;
-}
+};
