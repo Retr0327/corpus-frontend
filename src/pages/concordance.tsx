@@ -13,7 +13,7 @@ function Concordance() {
   const payload = {
     word: params.get('w'),
     media: params.get('m') === 'all' ? '' : params.get('m'),
-    cqlEnable: Boolean(params.get('c')),
+    cqlEnable: params.get('c') === 'true',
     postType: params.get('p'),
     boards: params.get('b'),
     start: params.get('s'),
