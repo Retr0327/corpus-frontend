@@ -1,5 +1,5 @@
 import API from '@config/api';
-import { request } from '@utils';
+import request from '@utils/request';
 
 const getBoards = async () => {
   try {
