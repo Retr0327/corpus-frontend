@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import Route from '@config/routes';
 import { useRouter } from 'next/router';
 import { SelectItem } from '@components/UI';
 import FormikController from '@components/Form';
@@ -65,7 +66,7 @@ function CorpusForm({ boards }: { boards: { [key in string]: any } }) {
     );
 
     const e = encodeURIComponent(base64);
-    const pushUrl = `/concordance?page=1&e=${e}`;
+    const pushUrl = `${Route.CONCORDANCE}?page=1&e=${e}`;
     router.push(pushUrl);
     actions.setSubmitting(false);
   };
