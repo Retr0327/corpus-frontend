@@ -22,7 +22,7 @@
       "@config/*": ["./src/config/*"],
       "@hooks": ["./src/hooks/index.tsx"],
       "@contexts/*": ["./src/contexts/*"],
-      "@utils": ["./src/utils/index.ts"],
+      "@utils/*": ["./src/utils/*"],
       "@services/*": ["./src/services/*"]
     }
   },
