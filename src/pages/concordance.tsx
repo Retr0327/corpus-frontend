@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router';
-import { NextPage, GetServerSideProps } from 'next';
+import { GetServerSideProps } from 'next';
 import ConcordanceTable from '@containers/Concordance';
 
-const Concordance: NextPage = () => {
+function Concordance() {
   const router = useRouter();
   const { e, page } = router.query as { e: string; page: string };
 
-  return <ConcordanceTable page={page} e={e} />;
-};
+  return <ConcordanceTable e={e} page={page} />;
+}
 
 export default Concordance;
 
