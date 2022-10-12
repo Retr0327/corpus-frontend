@@ -1,3 +1,3 @@
-const Route = { HOME: '/', TABLE: '/table' } as const;
+const Route = { HOME: '/', CONCORDANCE: '/concordance' } as const;
 
 export default Route;
