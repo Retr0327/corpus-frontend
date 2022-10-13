@@ -32,9 +32,9 @@ function CorpusForm({ boards }: { boards: { [key in string]: any } }) {
       .required('Required')
       .test('word', 'invalid cql pattern', (word, context) => {
         const cqlEnable = context.parent.cqlEnable as boolean;
-        const cqlSyntax = /^\s*$|\s|\t|[(["'`].*?[)\]"'`]|[|]/g;
 
         if (word) {
+          const cqlSyntax = /^\s*$|\s|\t|[(["'`].*?[)\]"'`]|[|]/g;
           const invalidQuery = cqlEnable === false && cqlSyntax.test(word);
           const invalidCQLQuery = cqlEnable === true && !cqlSyntax.test(word);
 
