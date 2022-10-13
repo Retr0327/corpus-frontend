@@ -1,11 +1,16 @@
 import getBoards from '@services/boards';
 import CorpusForm from '@containers/Form';
 import { GetServerSideProps } from 'next';
+import { Container } from '@mantine/core';
 
 type Board = { boards: { [key in string]: any } };
 
 function Home({ boards }: Board) {
-  return <CorpusForm boards={boards} />;
+  return (
+    <Container size={700} my={40}>
+      <CorpusForm boards={boards} />
+    </Container>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps<Board> = async () => {
