@@ -28,7 +28,21 @@ function CorpusForm({ boards }: { boards: { [key in string]: any } }) {
 
   const validationSchema = object({
     media: string().required('Required').nullable(),
-    word: string().required('Required'),
+    word: string()
+      .required('Required')
+      .test('word', 'invalid cql pattern', (word, context) => {
+        const cqlEnable = context.parent.cqlEnable as boolean;
+        const cqlSyntax = /^\s*$|\s|\t|[(["'`].*?[)\]"'`]|[|]/g;
+
+        if (word) {
+          const invalidQuery = cqlEnable === false && cqlSyntax.test(word);
+          const invalidCQLQuery = cqlEnable === true && !cqlSyntax.test(word);
+
+          if (invalidQuery || invalidCQLQuery) return false;
+        }
+
+        return true;
+      }),
     cqlEnable: boolean(),
     boards: string().nullable(),
     start: number()
