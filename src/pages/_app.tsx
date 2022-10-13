@@ -50,8 +50,8 @@ function App(props: AppProps & { colorScheme: ColorScheme }) {
               A corpus of PTT and Dcard.
             </Text>
           </Container>
-          <Component {...pageProps} />
         </Container>
+        <Component {...pageProps} />
       </DarkThemeContext>
     </>
   );
