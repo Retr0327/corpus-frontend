@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Link from 'next/link';
 import { Button, Container, Group, Title } from '@mantine/core';
 import useStyles from './NoResult.styles';
@@ -19,4 +20,4 @@ function NoResult() {
   );
 }
 
-export default NoResult;
+export default memo(NoResult);
