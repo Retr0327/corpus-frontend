@@ -1,13 +1,12 @@
+import useSWR from 'swr';
 import API from '@config/api';
+import { Boards } from 'types';
 import request from '@utils/request';
 
-const getBoards = async () => {
-  try {
-    const result = await request({ method: 'GET', url: API.boards });
-    return [result, null];
-  } catch (error) {
-    return [null, error];
-  }
+const getBoards = () => {
+  const { data, error } = useSWR<Boards>(API.boards, (url) => request({ url, method: 'GET' }));
+
+  return { boards: data, isLoading: !error && !data, isError: error };
 };
 
 export default getBoards;
