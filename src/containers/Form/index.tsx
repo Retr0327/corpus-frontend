@@ -6,12 +6,13 @@ import FormikController from '@components/Form';
 import { Form, Formik, FormikHelpers } from 'formik';
 import { object, string, number, boolean } from 'yup';
 import { Paper, Button, Grid, Group } from '@mantine/core';
+import { Boards } from 'types';
 import { FormValues } from './types';
-import { mediaOptions, generatePostTypeOptions } from './options';
+import { mediaOptions, createPostTypeOptions } from './options';
 
 const CURRENT_YEAR = new Date().getFullYear();
 
-function CorpusForm({ boards }: { boards: { [key in string]: any } }) {
+function CorpusForm({ boards }: { boards: Boards }) {
   const router = useRouter();
 
   const initialValue: FormValues = {
@@ -34,7 +35,7 @@ function CorpusForm({ boards }: { boards: { [key in string]: any } }) {
         const cqlEnable = context.parent.cqlEnable as boolean;
 
         if (word) {
-          const cqlSyntax = /^\s*$|\s|\t|[(["'`].*?[)\]"'`]|[|]/g;
+          const cqlSyntax = /^\s*$|[(["'`].*?[)\]"'`]|[|]/g;
           const invalidQuery = cqlEnable === false && cqlSyntax.test(word);
           const invalidCQLQuery = cqlEnable === true && !cqlSyntax.test(word);
 
@@ -121,45 +122,39 @@ function CorpusForm({ boards }: { boards: { [key in string]: any } }) {
                 />
               </Grid.Col>
 
-              {formik.values.media !== 'all' ? (
-                <>
-                  <Grid.Col xs={12} sm={12} md={6} lg={6}>
-                    <FormikController
-                      control="select"
-                      name="boards"
-                      label="看版"
-                      options={boards[formik.values.media].map((value: string) => ({
-                        label: value,
-                        value,
-                      }))}
-                      withAsterisk
-                      placeholder="Pick board"
-                    />
-                  </Grid.Col>
-
-                  <Grid.Col xs={12} sm={12} md={6} lg={6}>
-                    <FormikController
-                      control="select"
-                      name="board"
-                      label="搜尋對象"
-                      options={generatePostTypeOptions(formik.values.media)}
-                      withAsterisk
-                      placeholder="Pick board"
-                    />
-                  </Grid.Col>
-                </>
-              ) : (
-                <Grid.Col xs={12} sm={12} md={12} lg={12}>
+              {formik.values.media !== 'all' && formik.values.media !== null && (
+                <Grid.Col xs={12} sm={12} md={6} lg={6}>
                   <FormikController
                     control="select"
-                    name="postType"
-                    label="搜尋對象"
-                    options={generatePostTypeOptions(formik.values.media)}
+                    name="boards"
+                    label="看版"
+                    options={boards[formik.values.media as 'ptt' | 'dcard'].map(
+                      (value: string) => ({
+                        label: value,
+                        value,
+                      })
+                    )}
                     withAsterisk
                     placeholder="Pick board"
                   />
                 </Grid.Col>
               )}
+
+              <Grid.Col
+                xs={12}
+                sm={12}
+                md={formik.values.media === 'all' ? 12 : 6}
+                lg={formik.values.media === 'all' ? 12 : 6}
+              >
+                <FormikController
+                  control="select"
+                  name="postType"
+                  label="搜尋對象"
+                  options={createPostTypeOptions(formik.values.media)}
+                  withAsterisk
+                  placeholder="Pick board"
+                />
+              </Grid.Col>
 
               <Grid.Col xs={12} sm={12} md={6} lg={6}>
                 <FormikController
