@@ -4,12 +4,12 @@ const mediaOptions = [
   { label: 'Dcard', value: 'dcard', image: '/dcard-logo.png' },
 ];
 
-function generatePostTypeOptions(media: string) {
+function createPostTypeOptions(media: string) {
   const options = [
     { label: 'All', value: 'all' },
     { label: 'Title', value: 'title' },
     { label: 'Body', value: 'body' },
-    { label: 'Comment', value: 'commentAll' },
+    { label: 'Comment', value: 'comment' },
   ];
 
   switch (media) {
@@ -34,4 +34,4 @@ function generatePostTypeOptions(media: string) {
   }
 }
 
-export { mediaOptions, generatePostTypeOptions };
+export { mediaOptions, createPostTypeOptions };
