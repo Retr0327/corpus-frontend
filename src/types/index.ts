@@ -34,6 +34,11 @@ export interface Response<ResData = {}> {
   msg?: string;
 }
 
+export type Boards = {
+  ptt: string[];
+  dcard: string[];
+};
+
 export interface CorpusQueries {
   word: string;
   media: string;
@@ -177,19 +182,3 @@ export interface SearchParam {
   patt: string;
   wordsaroundhit: string;
 }
-
-export type Boards = {
-  indexName: string;
-  fieldName: string;
-  isAnnotatedField: boolean;
-  displayName: string;
-  description: string;
-  uiType: string;
-  type: string;
-  analyzer: string;
-  unknownCondition: string;
-  unknownValue: string;
-  displayValues: { [key: string]: any };
-  fieldValues: { [key: string]: number };
-  valueListComplete: boolean;
-};
