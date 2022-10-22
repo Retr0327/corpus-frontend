@@ -9,7 +9,7 @@ function getPayload(page: string, e: string) {
     word: params.get('w'),
     media: params.get('m') === 'all' ? '' : params.get('m'),
     cqlEnable: params.get('c') === 'true',
-    postType: params.get('p'),
+    postType: params.get('p') === 'all' ? '' : params.get('p'),
     boards: params.get('b'),
     start: params.get('s'),
     end: params.get('e'),
