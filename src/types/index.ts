@@ -106,8 +106,8 @@ export type ControllerPropsWithCol = {
 
 export interface BlacklabResponse {
   summary: Summary;
-  hits: Hit[] | [];
-  docInfos: DocInfos | {};
+  hits: Hit[];
+  docInfos: DocInfos;
 }
 
 export interface Hit {
