@@ -10,7 +10,12 @@ const PostLink = forwardRef((props: PostLinkProps, ref) => {
 
   return (
     <div ref={ref as React.RefObject<HTMLDivElement>} {...rest}>
-      <ActionIcon component={NextLink} href={createLink(props.media, props.docId, props.board)}>
+      <ActionIcon
+        component={NextLink}
+        href={createLink(props.media, props.docId, props.board)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <IconLink />
       </ActionIcon>
     </div>
