@@ -7,7 +7,7 @@ import { Props } from './types';
 
 function Pagination(props: Props) {
   const router = useRouter();
-  const { e, page, fetchNumber, numberOfHits, mutate } = props;
+  const { e, showPos, page, fetchNumber, numberOfHits, mutate } = props;
   const miniScreen = useMediaQuery('(max-width: 400px)');
   const smallScreen = useMediaQuery('(max-width: 485px)');
 
@@ -23,7 +23,7 @@ function Pagination(props: Props) {
       withEdges
       size={setPaginationSize()}
       onChange={async (value) => {
-        const pushUrl = `${Route.CONCORDANCE}?page=${value}&e=${e}`;
+        const pushUrl = `${Route.CONCORDANCE}?page=${value}&pos=${showPos}&e=${e}`;
         if (router.asPath === pushUrl) return;
         await router.push(pushUrl);
         mutate();
