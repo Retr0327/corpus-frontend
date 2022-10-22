@@ -18,7 +18,7 @@ function Pagination(props: Props) {
 
   return (
     <MantinePagination
-      total={Math.round(numberOfHits / fetchNumber)}
+      total={Math.round(numberOfHits / fetchNumber) || 1}
       initialPage={Number(page)}
       withEdges
       size={setPaginationSize()}
