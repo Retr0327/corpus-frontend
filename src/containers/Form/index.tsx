@@ -81,7 +81,7 @@ function CorpusForm({ boards }: { boards: Boards }) {
     );
 
     const e = encodeURIComponent(base64);
-    const pushUrl = `${Route.CONCORDANCE}?page=1&e=${e}`;
+    const pushUrl = `${Route.CONCORDANCE}?page=1&pos=false&e=${e}`;
     router.push(pushUrl);
     actions.setSubmitting(false);
   };
