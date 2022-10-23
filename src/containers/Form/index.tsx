@@ -75,8 +75,8 @@ function CorpusForm({ boards }: { boards: Boards }) {
     } = values;
 
     const base64 = window.btoa(
-      `m=${media}&w=${encodeURIComponent(
-        word
+      `m=${media}&w=${encodeURI(
+        word.replaceAll('&', '%26')
       )}&b=${selectedBoards}&p=${postType}&c=${cqlEnable}&s=${start}&e=${end}&win=${windowSize}&f=${fetchNumber}`
     );
 
