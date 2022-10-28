@@ -1,27 +1,29 @@
+import { memo } from 'react';
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { Loader } from '@components/UI';
 import getBoards from '@services/boards';
 import CorpusForm from '@containers/Form';
-import { GetServerSideProps } from 'next';
 import { Container } from '@mantine/core';
 
-type Board = { boards: { [key in string]: any } };
+const Home: NextPage = () => {
+  const router = useRouter();
+  const { boards, isError, isLoading } = getBoards();
 
-function Home({ boards }: Board) {
-  return (
-    <Container size={700} my={40}>
-      <CorpusForm boards={boards} />
-    </Container>
-  );
-}
-
-export const getServerSideProps: GetServerSideProps<Board> = async () => {
-  const redirect = { redirect: { permanent: false, destination: '/500' } };
-  const [result, error] = await getBoards();
-
-  if (error || result.status === 'failed') {
-    return redirect;
+  if (isLoading) {
+    return <Loader />;
   }
 
-  return { props: { boards: result.data } };
+  if (isError || !boards) {
+    router.push('/500', { pathname: router.pathname });
+    return null;
+  }
+
+  return (
+    <Container size={700} my={40}>
+      <CorpusForm boards={boards.data} />
+    </Container>
+  );
 };
 
-export default Home;
+export default memo(Home);
