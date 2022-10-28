@@ -8,6 +8,7 @@ import { object, string, number, boolean } from 'yup';
 import { Paper, Button, Grid, Group } from '@mantine/core';
 import { Boards } from 'types';
 import { FormValues } from './types';
+import { testWord, resetBoardsField } from './utils';
 import { mediaOptions, createPostTypeOptions } from './options';
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -31,19 +32,8 @@ function CorpusForm({ boards }: { boards: Boards }) {
     media: string().required('Required').nullable(),
     word: string()
       .required('Required')
-      .test('word', 'invalid cql pattern', (word, context) => {
-        const cqlEnable = context.parent.cqlEnable as boolean;
-
-        if (word) {
-          const cqlSyntax = /^\s*$|[(["'`].*?[)\]"'`]|[|]/g;
-          const invalidQuery = cqlEnable === false && cqlSyntax.test(word);
-          const invalidCQLQuery = cqlEnable === true && !cqlSyntax.test(word);
-
-          if (invalidQuery || invalidCQLQuery) return false;
-        }
-
-        return true;
-      }),
+      .test('word', 'please disable cql query', testWord('cql'))
+      .test('word', 'please enable cql query', testWord('default')),
     cqlEnable: boolean(),
     boards: string().nullable(),
     start: number()
@@ -98,6 +88,7 @@ function CorpusForm({ boards }: { boards: Boards }) {
                     control="select"
                     name="media"
                     label="Media"
+                    onChange={resetBoardsField('media', formik)}
                     itemComponent={SelectItem}
                     options={mediaOptions}
                     withAsterisk
