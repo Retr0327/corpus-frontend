@@ -18,11 +18,11 @@
     "paths": {
       "types": ["./src/types/index.ts"],
       "@components/*": ["./src/components/*"],
-      "@containers/*": ["./src/containers/*"],
       "@config/*": ["./src/config/*"],
-      "@hooks": ["./src/hooks/index.tsx"],
+      "@hooks/*": ["./src/hooks/*"],
       "@contexts/*": ["./src/contexts/*"],
       "@utils/*": ["./src/utils/*"],
+      "@utils": ["./src/utils/index.ts"],
       "@services/*": ["./src/services/*"]
     }
   },
