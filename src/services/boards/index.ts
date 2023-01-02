@@ -1,16 +1,17 @@
-import useSWR from 'swr';
 import API from '@config/api';
+import { Response } from 'types';
 import request from '@utils/request';
-import { Response, Boards } from 'types';
+import { Boards } from 'types/corpus';
 
 type ResponseType = Response<Boards> | null;
 
-const getBoards = () => {
-  const { data, error } = useSWR<ResponseType>(API.boards, (url) =>
-    request({ url, method: 'GET' })
-  );
-
-  return { boards: data, isLoading: !error && !data, isError: error };
+const getBoards = async (): Promise<[ResponseType, any]> => {
+  try {
+    const result = await request({ url: API.V1.corpus.boards.external, method: 'GET' });
+    return [result, null];
+  } catch (error) {
+    return [null, error];
+  }
 };
 
 export default getBoards;
