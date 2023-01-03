@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Route from '@config/routes';
 import { Boards } from 'types/corpus';
 import getBoards from '@services/boards';
 import { Container } from '@mantine/core';
@@ -19,7 +20,7 @@ const Home: NextPage<Props> = (props) => {
 export default Home;
 
 export const getServerSideProps = async () => {
-  const redirect = { redirect: { permanent: false, destination: '/500' } };
+  const redirect = { redirect: { permanent: false, destination: Route.serverError } };
   const [result, error] = await getBoards();
 
   if (error || !result || result.status === 'failed') {
