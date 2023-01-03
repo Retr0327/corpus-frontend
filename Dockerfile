@@ -16,7 +16,7 @@ COPY . /app
 
 RUN pnpm build
 
-FROM node:16-bullseye-slim as release
+FROM node:18-bullseye-slim as release
 
 WORKDIR /app
 
