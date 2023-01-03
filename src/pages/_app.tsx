@@ -53,7 +53,7 @@ function App(props: AppProps & { colorScheme: ColorScheme }) {
         />
       </Head>
       <DarkThemeContext colorScheme={colorScheme}>
-        <Container size={700} my={40}>
+        <Container size={700} mt={70}>
           <Group position="right" mt={5}>
             <ColorSchemeToggle />
           </Group>
