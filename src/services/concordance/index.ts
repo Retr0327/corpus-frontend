@@ -4,7 +4,7 @@ import request from '@utils/request';
 import { Response } from 'types';
 import { ConcordanceRequestBody, Concordance } from 'types/corpus';
 
-type ResponseType = Response<Concordance> | null;
+export type ResponseType = Response<Concordance> | null;
 
 const useConcordance = (payload: ConcordanceRequestBody) => {
   const { data, error, mutate } = useSWR<ResponseType>(API.V1.corpus.concordance, (url) =>
