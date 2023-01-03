@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { ControllerProps } from 'types/form';
-import { Select, Switch, TextInput, MultiSelect } from './components';
+import { Select, Switch, TextInput, MultiSelect, NumberInput } from './components';
 
 function FormController(props: ControllerProps) {
   const { control } = props;
@@ -14,6 +14,8 @@ function FormController(props: ControllerProps) {
       return <TextInput {...props} />;
     case 'multi-select':
       return <MultiSelect {...props} />;
+    case 'number-input':
+      return <NumberInput {...props} />;
     default:
       return null;
   }
