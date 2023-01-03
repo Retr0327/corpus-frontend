@@ -9,10 +9,6 @@ export type ConcordanceParams = {
   pos: string;
 };
 
-export type CorpusFormProps = {
-  boards: Boards;
-};
-
 export interface ConcordanceRequestBody {
   word: string;
   media: string;
