@@ -1,29 +1,33 @@
-import { useRouter } from 'next/router';
-import { GetServerSideProps } from 'next';
+import Route from '@config/routes';
+import { decodeURL } from '@utils/url';
 import { Container } from '@mantine/core';
-import ConcordanceTable from '@containers/Concordance';
+import { NextPage, GetServerSideProps } from 'next';
+import { ConcordancePageProps } from 'types/corpus';
+import ConcordanceTable from '@components/pages/Corpus/Concordance';
 
-function Concordance() {
-  const router = useRouter();
-  const { e, page } = router.query as { e: string; page: string };
+const Concordance: NextPage<ConcordancePageProps> = (props) => {
+  const { payload } = props;
 
   return (
     <Container size={1200} my={40}>
-      <ConcordanceTable e={e} page={page} />
+      <ConcordanceTable payload={payload} />
     </Container>
   );
-}
+};
 
 export default Concordance;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { query } = context;
-  const redirect = { redirect: { permanent: false, destination: '/' } };
-  const { page, e } = query;
+  const redirect = { redirect: { permanent: false, destination: Route.home } };
+  const { page, pos, e } = query as { page?: string; pos?: string; e?: string };
+  const invalidQuery = page === undefined || pos === undefined || e === undefined;
 
-  if (page === undefined || e === undefined) {
-    return redirect;
-  }
+  if (invalidQuery) return redirect;
 
-  return { props: {} };
+  const payload = decodeURL(e, page);
+
+  if (payload === false) return redirect;
+
+  return { props: { payload } };
 };
