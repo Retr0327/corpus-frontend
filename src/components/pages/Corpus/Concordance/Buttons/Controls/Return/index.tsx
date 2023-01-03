@@ -9,7 +9,7 @@ function ReturnButton() {
     <Button
       component={Link}
       href={Route.home}
-      variant="default"
+      variant="outline"
       leftIcon={<IconArrowBackUp size={14} />}
     >
       Back to Form
