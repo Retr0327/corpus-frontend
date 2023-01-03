@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { ControllerProps } from 'types/form';
-import { Select, TextInput } from './components';
+import { Select, Switch, TextInput } from './components';
 
 function FormController(props: ControllerProps) {
   const { control } = props;
@@ -8,6 +8,8 @@ function FormController(props: ControllerProps) {
   switch (control) {
     case 'select':
       return <Select {...props} />;
+    case 'switch':
+      return <Switch {...props} />;
     case 'text-input':
       return <TextInput {...props} />;
     default:
