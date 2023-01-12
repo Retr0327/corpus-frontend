@@ -1,31 +1,38 @@
-import { NextPage } from 'next';
+import API from '@config/api';
+import { SWRConfig } from 'swr';
 import Route from '@config/routes';
 import { Boards } from 'types/corpus';
-import getBoards from '@services/boards';
 import { Container } from '@mantine/core';
-import CorpusForm from '@components/pages/Corpus/Form';
+import { fetchBoards } from '@services/boards';
+import Corpus from '@components/pages/Corpus/Home';
+import type { NextPage, GetServerSideProps } from 'next';
 
-type Props = { boards: Boards };
+type Props = { fallback: { [x: string]: Boards } };
 
-const Home: NextPage<Props> = (props) => {
-  const { boards } = props;
-
-  return (
+const Home: NextPage<Props> = (props) => (
+  <SWRConfig value={{ fallback: props.fallback }}>
     <Container size={700} my={40}>
-      <CorpusForm boards={boards} />
+      <Corpus />
     </Container>
-  );
-};
+  </SWRConfig>
+);
 
 export default Home;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const redirect = { redirect: { permanent: false, destination: Route.serverError } };
-  const [result, error] = await getBoards();
+  const url = API.V1.corpus.boards;
+  const boards = await fetchBoards(url);
 
-  if (error || !result || result.status === 'failed') {
+  if (boards === null || boards.status === 'failed') {
     return redirect;
   }
 
-  return { props: { boards: result.data } };
+  return {
+    props: {
+      fallback: {
+        [url]: boards.data,
+      },
+    },
+  };
 };
