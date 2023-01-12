@@ -23,7 +23,7 @@ const externalCorpus = urlJoin(externalAPI, 'corpus');
 const API = {
   V1: {
     corpus: {
-      boards: { root: urlJoin(corpus, 'boards'), external: urlJoin(externalCorpus, 'boards') },
+      boards: urlJoin(externalCorpus, 'boards'),
       concordance: urlJoin(corpus, 'concordance'),
     },
   },
